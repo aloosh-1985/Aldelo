@@ -12,7 +12,12 @@ namespace Aldelo
         protected void Page_Load(object sender, EventArgs e)
         {
             Helper help = new Helper();
-            var result = help.GetCustomerEmails();
+            //help.GetOrders();
+           // help.GetCustomerEmails();
+            var deliverId = Guid.NewGuid().ToString();
+            var doorDashToken = help.GetJWTToken();
+            help.MakeNewDelivery(deliverId,doorDashToken);
+            help.RefundOrder(deliverId, doorDashToken);
         }
     }
 }
